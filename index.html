@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portofolio — Jilan Mufidah</title>
+
+<style>
+:root{ --muted:#94a3b8; }
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+background:linear-gradient(180deg,#071025 0%,#091627 50%,#02101a 100%);
+color:#e6eef6;
+overflow-x:hidden;
+}
+
+/* CANVAS */
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:40px 20px 10px;
+}
+
+.hero img{
+width:260px;
+height:340px;
+object-fit:cover;
+border-radius:20px;
+padding:6px;
+background:linear-gradient(135deg,#d4af37,#ffd700,#b8860b);
+box-shadow:0 0 40px rgba(255,215,0,0.8);
+transition:.4s;
+}
+
+.hero img:hover{
+transform:scale(1.05);
+box-shadow:0 0 70px gold;
+}
+
+h1{margin:18px 0 6px;font-size:26px;}
+p.lead{margin:0;color:var(--muted);}
+
+main{padding:28px 20px;max-width:1100px;margin:auto;}
+
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:14px;
+padding:16px;
+margin-bottom:24px;
+backdrop-filter:blur(6px);
+}
+
+/* GALERI */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:22px;
+margin-top:14px;
+}
+
+.gallery-item{
+border-radius:16px;
+padding:4px;
+background:linear-gradient(135deg,#d4af37,#ffd700,#b8860b);
+cursor:pointer;
+transition:.4s;
+}
+
+.gallery-item:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 0 25px rgba(255,215,0,0.7);
+}
+
+.gallery-item img{
+width:100%;
+height:auto;
+border-radius:14px;
+display:block;
+object-fit:cover;
+}
+
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:85%;
+border-radius:16px;
+box-shadow:0 0 40px gold;
+}
+
+.lightbox.active{display:flex}
+
+/* SOCIAL BUTTONS */
+.social-buttons{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+
+.social-buttons a{
+text-decoration:none;
+padding:10px 18px;
+border-radius:30px;
+font-weight:bold;
+background:linear-gradient(135deg,#ffd700,#b8860b);
+color:#000;
+box-shadow:0 0 15px rgba(255,215,0,0.7);
+transition:.3s;
+}
+
+.social-buttons a:hover{
+transform:scale(1.1);
+}
+
+/* MUSIC */
+.music-control{
+position:fixed;
+bottom:20px;
+right:20px;
+background:linear-gradient(135deg,#ffd700,#b8860b);
+color:#000;
+border:none;
+padding:12px 20px;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 25px rgba(255,215,0,0.8);
+transition:.3s;
+}
+
+.music-control:hover{transform:scale(1.1);}
+
+footer{
+padding:20px;
+text-align:center;
+color:var(--muted);
+font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="hero">
+<img src="jilan.jpeg">
+<h1>Jilan Mufidah</h1>
+<p class="lead">Tentang Saya</p>
+</div>
+
+<main>
+
+<div class="card">
+<h2>Perkenalkan</h2>
+<p>Halo, saya <strong>Jilan Mufidah</strong>. Selamat datang di portofolio saya. Perkenalkan, namanya Jilan Mufidah. Ia lahir pada 08 Maret 2012 dan tinggal di Desa Sindang, Kabupaten Majalengka. Saat ini, Jilan menempuh pendidikan di SMP Negeri 1 Sindang.
+
+Sejak kecil, Jilan dikenal sebagai pribadi yang aktif dan penuh semangat. Ia memiliki hobi menari dan membaca. Baginya, menari adalah cara untuk mengekspresikan diri dan menyalurkan energi positif, sedangkan membaca membuka wawasan serta memperluas pengetahuannya tentang banyak hal.
+
+Ketertarikannya pada kegiatan Pramuka bukanlah tanpa alasan. Jilan bergabung dengan Pramuka karena ingin melatih kedisiplinan dalam dirinya. Ia juga ingin menjadi teladan yang baik bagi teman-temannya. Selain itu, ia terdorong untuk mencoba dan mempelajari hal-hal baru yang ada di dalam kegiatan Pramuka. Melalui Pramuka, Jilan berharap dapat mengembangkan bakat dan minatnya, sekaligus membentuk karakter yang tangguh, mandiri, dan bertanggung jawab.
+
+Bagi Jilan, Pramuka bukan sekadar kegiatan ekstrakurikuler, melainkan wadah untuk bertumbuh, belajar, dan menjadi pribadi yang lebih baik setiap harinya.</p>
+
+<div class="social-buttons">
+<a href="https://www.instagram.com/mfiddaa?igsh=bXgzY3d1bmJqY3Fl" target="_blank">Instagram</a>
+<a href="https://wa.me/+62881023747077" target="_blank">WhatsApp</a>
+</div>
+
+</div>
+
+<div class="card">
+<h2>Galeri</h2>
+<div class="gallery">
+<div class="gallery-item"><img src="jilan foto 1.jpeg"></div>
+<div class="gallery-item"><img src="skk Gerak jalan.jpeg"></div>
+<div class="gallery-item"><img src="jilan foto 3.jpeg"></div>
+<div class="gallery-item"><img src="2026 pramuka.jpeg"></div>
+<div class="gallery-item"><img src="skk Gerak jalan.jpeg"></div>
+<div class="gallery-item"><img src="jilan foto 3.jpeg"></div>
+</div>
+</div>
+
+</main>
+
+<footer>
+Portofolio Presentasi • Jilan Mufidah
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+<img src="" id="lightbox-img">
+</div>
+
+<!-- AUDIO -->
+<audio id="bg-music" loop>
+<source src="musik.mp3" type="audio/mpeg">
+</audio>
+<button class="music-control" id="musicBtn">🔊 MUSIC ON</button>
+
+<script>
+const music = document.getElementById('bg-music');
+const btn = document.getElementById('musicBtn');
+let playing = false;
+
+btn.addEventListener("click",()=>{
+if(!playing){
+music.play();
+btn.textContent="🔇 MUSIC OFF";
+}else{
+music.pause();
+btn.textContent="🔊 MUSIC ON";
+}
+playing=!playing;
+});
+
+/* LIGHTBOX */
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+
+document.querySelectorAll(".gallery-item img").forEach(img=>{
+img.addEventListener("click",()=>{
+lightbox.classList.add("active");
+lightboxImg.src = img.src;
+});
+});
+
+lightbox.addEventListener("click",()=>{
+lightbox.classList.remove("active");
+});
+
+/* PARTIKEL */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize",resize);
+
+let particles=[];
+for(let i=0;i<150;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+dx:(Math.random()-0.5)*1.2,
+dy:(Math.random()-0.5)*1.2,
+alpha:Math.random()
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle=`rgba(255,215,0,${p.alpha})`;
+ctx.shadowBlur=15;
+ctx.shadowColor="gold";
+ctx.fill();
+
+p.x+=p.dx;
+p.y+=p.dy;
+
+if(p.x<0||p.x>canvas.width) p.dx*=-1;
+if(p.y<0||p.y>canvas.height) p.dy*=-1;
+});
+
+requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
