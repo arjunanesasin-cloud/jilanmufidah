@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NESASIN SCOUT</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+/* BACKGROUND BARU */
+body {
+  color: #fff;
+  background: #020617;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* GRID */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -2;
+}
+
+/* ORB BIRU */
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #22d3ee, transparent 70%);
+  top: -100px;
+  left: -100px;
+  filter: blur(120px);
+  animation: float1 12s infinite alternate;
+  z-index: -1;
+}
+
+/* ORB UNGU */
+.bg2 {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #a855f7, transparent 70%);
+  bottom: -100px;
+  right: -100px;
+  filter: blur(120px);
+  animation: float2 14s infinite alternate;
+  z-index: -1;
+}
+
+@keyframes float1 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(150px, 120px); }
+}
+
+@keyframes float2 {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-150px, -100px); }
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 8%;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+/* SECTION */
+section {
+  padding: 60px 10%;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* BIO */
+.bio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+/* FOTO */
+.bio-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px dashed #facc15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+  animation: glow 2s infinite alternate;
+}
+
+.bio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#placeholder {
+  color: #facc15;
+  font-size: 14px;
+  text-align: center;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px #facc15;
+  }
+  to {
+    box-shadow:
+      0 0 20px #facc15,
+      0 0 40px #facc15,
+      0 0 60px rgba(250,204,21,0.8);
+  }
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+td {
+  padding: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* EDIT */
+.editable:hover {
+  outline: 2px dashed #38bdf8;
+  cursor: pointer;
+}
+
+/* GALERI */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  border-radius: 10px;
+}
+
+/* BUTTON */
+button {
+  background: #38bdf8;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg2"></div>
+
+<nav>
+  <h3>NESASIN SCOUT</h3>
+  <div>
+    <a href="#bio">Profil</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#" onclick="adminMode()">Admin</a>
+  </div>
+</nav>
+
+<section id="bio">
+  <div class="card bio">
+
+    <div>
+      <div class="bio-photo" onclick="uploadFoto.click()">
+        <img id="foto" style="display:none;">
+        <div id="placeholder">+ Tambah Foto</div>
+        <input type="file" id="uploadFoto" hidden>
+      </div>
+
+      <button id="hapusFoto" style="display:none;">🗑️ Hapus Foto</button>
+    </div>
+
+    <div style="flex:1">
+      <h2 class="editable" id="nama">Nama Kamu</h2>
+
+      <table>
+        <tr><td>Nama</td><td class="editable" id="namaData">Nama Kamu</td></tr>
+        <tr><td>TTL</td><td class="editable" id="ttl">-</td></tr>
+        <tr><td>Alamat</td><td class="editable" id="alamat">-</td></tr>
+        <tr><td>Hobi</td><td class="editable" id="hobi">-</td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<section id="tentang">
+  <div class="card">
+    <h2>Tentang Saya</h2>
+    <p class="editable" id="tentangText">
+      Tulis tentang dirimu di sini...
+    </p>
+  </div>
+</section>
+
+<section id="galeri">
+  <div class="card">
+    <h2>Galeri</h2>
+    <div class="gallery" id="gallery"></div>
+    <input type="file" id="multiFoto" multiple>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightboxImg">
+</div>
+
+<audio id="music" loop>
+  <source src="musik.mp3">
+</audio>
+
+<button onclick="toggleMusic()" style="position:fixed;bottom:20px;right:20px;">
+  🎵
+</button>
+
+<script>
+let admin = false;
+
+function adminMode() {
+  let pass = prompt("Password:");
+  if (pass !== "admin123456") return alert("Salah!");
+
+  admin = true;
+  alert("Mode Admin Aktif!");
+
+  document.querySelectorAll(".editable").forEach(el => {
+    el.contentEditable = true;
+  });
+
+  hapusFoto.style.display = "inline-block";
+}
+
+uploadFoto.onchange = function() {
+  let reader = new FileReader();
+  reader.onload = e => {
+    foto.src = e.target.result;
+    foto.style.display = "block";
+    placeholder.style.display = "none";
+    localStorage.setItem("foto", e.target.result);
+  };
+  reader.readAsDataURL(this.files[0]);
+};
+
+hapusFoto.onclick = function() {
+  if (!admin) return;
+
+  if (confirm("Hapus foto profil?")) {
+    foto.src = "";
+    foto.style.display = "none";
+    placeholder.style.display = "block";
+    localStorage.removeItem("foto");
+  }
+};
+
+multiFoto.onchange = function() {
+  [...this.files].forEach(file => {
+    let reader = new FileReader();
+    reader.onload = e => {
+      let img = document.createElement("img");
+      img.src = e.target.result;
+
+      setGalleryClick(img);
+
+      gallery.appendChild(img);
+      localStorage.setItem("galeri", gallery.innerHTML);
+    };
+    reader.readAsDataURL(file);
+  });
+};
+
+function setGalleryClick(img) {
+  img.onclick = () => {
+    if (admin) {
+      if (confirm("Hapus foto ini?")) {
+        img.remove();
+        localStorage.setItem("galeri", gallery.innerHTML);
+        return;
+      }
+    }
+
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  };
+}
+
+lightbox.onclick = () => lightbox.style.display = "none";
+
+window.onload = () => {
+  let savedFoto = localStorage.getItem("foto");
+
+  if (savedFoto) {
+    foto.src = savedFoto;
+    foto.style.display = "block";
+    placeholder.style.display = "none";
+  }
+
+  gallery.innerHTML = localStorage.getItem("galeri") || "";
+
+  document.querySelectorAll("#gallery img").forEach(img => {
+    setGalleryClick(img);
+  });
+
+  document.querySelectorAll(".editable").forEach(el => {
+    if (localStorage.getItem(el.id)) {
+      el.innerText = localStorage.getItem(el.id);
+    }
+  });
+};
+
+document.querySelectorAll(".editable").forEach(el => {
+  el.oninput = () => {
+    localStorage.setItem(el.id, el.innerText);
+  };
+});
+
+function toggleMusic() {
+  let m = document.getElementById("music");
+  m.paused ? m.play() : m.pause();
+}
+
+document.body.addEventListener("click", () => music.play(), { once: true });
+</script>
+
+</body>
+</html>
